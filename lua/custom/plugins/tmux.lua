@@ -1,21 +1,11 @@
-return {
-  'alexghergh/nvim-tmux-navigation',
-  lazy = false,
-  config = function()
-
-    local nvim_tmux_nav = require('nvim-tmux-navigation')
-
-    nvim_tmux_nav.setup {
-      disable_when_zoomed = true -- defaults to false
-    }
-
-    vim.keymap.set('n', "<C-h>", nvim_tmux_nav.NvimTmuxNavigateLeft)
-    vim.keymap.set('n', "<C-j>", nvim_tmux_nav.NvimTmuxNavigateDown)
-    vim.keymap.set('n', "<C-k>", nvim_tmux_nav.NvimTmuxNavigateUp)
-    vim.keymap.set('n', "<C-l>", nvim_tmux_nav.NvimTmuxNavigateRight)
-    vim.keymap.set('n', "<C-\\>", nvim_tmux_nav.NvimTmuxNavigateLastActive)
-    vim.keymap.set('n', "<C-Space>", nvim_tmux_nav.NvimTmuxNavigateNext)
-
-  end
+return{
+  {"elijahdanko/ttymux.nvim",
+    config = function()
+      require("ttymux").setup({})
+      vim.keymap.set("n", "<C-a>h", function() require("ttymux.window").navigate("h") end)
+      vim.keymap.set("n", "<C-a>l", function() require("ttymux.window").navigate("l") end)
+      vim.keymap.set("n", "<C-a>j", function() require("ttymux.window").navigate("j") end)
+      vim.keymap.set("n", "<C-a>k", function() require("ttymux.window").navigate("k") end)
+  end}
 }
 -- vim: ts=2 sts=2 sw=2 et
